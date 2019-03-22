@@ -6,6 +6,10 @@
     .keyboard {
         width: 1000px;
         border: 1px solid black;
+
+        background: -moz-linear-gradient(20deg, rgba(254,255,255,1) 0%, rgba(201,201,201,1) 88%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(20deg, rgba(254,255,255,1) 0%,rgba(201,201,201,1) 88%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(20deg, rgba(254,255,255,1) 0%,rgba(201,201,201,1) 88%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     }
 
     .stop {
