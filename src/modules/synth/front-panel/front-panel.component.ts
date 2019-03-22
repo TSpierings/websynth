@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { isNullOrUndefined } from 'util';
 
 @Component({
@@ -11,10 +11,11 @@ export class FrontPanelComponent implements OnInit {
   private gainNode: GainNode;
   private convolverNode: ConvolverNode;
   private impulseResponse: ArrayBuffer;
-  private frequency = 0;
-  private oscillatorOutputNode: AudioNode;
 
-  constructor() { }
+  frequency = 0;
+  oscillatorOutputNode: AudioNode;
+
+  constructor(private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.audioContext = new AudioContext();
@@ -25,6 +26,7 @@ export class FrontPanelComponent implements OnInit {
   changeFrequency(frequency: number) {
     this.frequency = frequency;
     this.audioContext.resume();
+    this.cd.detectChanges();
   }
 
   enterFile(event) {
