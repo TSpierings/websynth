@@ -1,2 +1,6 @@
 <input class="file" type="file" (change)="enterFile($event)"/>
 <app-slider-board (frequencyChange)="changeFrequency($event)"></app-slider-board>
+<app-oscillator 
+  [audioContext]="audioContext"
+  [outputNode]="oscillatorOutputNode"
+  [frequency]="frequency"></app-oscillator>

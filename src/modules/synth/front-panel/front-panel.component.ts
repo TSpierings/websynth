@@ -8,10 +8,11 @@ import { isNullOrUndefined } from 'util';
 })
 export class FrontPanelComponent implements OnInit {
   private audioContext: AudioContext;
-  private osc: OscillatorNode;
   private gainNode: GainNode;
   private convolverNode: ConvolverNode;
   private impulseResponse: ArrayBuffer;
+  private frequency = 0;
+  private oscillatorOutputNode: AudioNode;
 
   constructor() { }
 
@@ -19,11 +20,10 @@ export class FrontPanelComponent implements OnInit {
     this.audioContext = new AudioContext();
     this.initGain();
     this.initConvolver();
-    this.initOsc();
   }
 
   changeFrequency(frequency: number) {
-    this.osc.frequency.setValueAtTime(frequency, this.audioContext.currentTime);
+    this.frequency = frequency;
     this.audioContext.resume();
   }
 
@@ -37,20 +37,6 @@ export class FrontPanelComponent implements OnInit {
     };
   }
 
-  private initOsc() {
-    this.osc = this.audioContext.createOscillator();
-    this.osc.frequency.value = 0;
-
-    if (!isNullOrUndefined(this.convolverNode)) {
-      this.osc.connect(this.convolverNode);
-    } else {
-      this.osc.connect(this.gainNode);
-    }
-
-    this.osc.start();
-    this.osc.type = 'square';
-  }
-
   //#region init methods
   private initConvolver() {
     if (!isNullOrUndefined(this.impulseResponse)) {
@@ -61,9 +47,7 @@ export class FrontPanelComponent implements OnInit {
       }, (e) => { console.log(e); });
 
       this.convolverNode.connect(this.gainNode);
-
-      this.osc.disconnect();
-      this.osc.connect(this.convolverNode);
+      this.oscillatorOutputNode = this.convolverNode;
     }
   }
 
@@ -71,6 +55,7 @@ export class FrontPanelComponent implements OnInit {
     this.gainNode = this.audioContext.createGain();
     this.gainNode.gain.value = 1;
     this.gainNode.connect(this.audioContext.destination);
+    this.oscillatorOutputNode = this.gainNode;
   }
   //#endregion
 }
