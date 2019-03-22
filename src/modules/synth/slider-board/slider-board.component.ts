@@ -8,7 +8,7 @@ import { Component, HostListener, Input, Output, EventEmitter } from '@angular/c
 export class SliderBoardComponent {
   @Input() boardWidth = 1000;
   @Input() boardHeight = 100;
-  @Output() frequencyChange: EventEmitter<number>;
+  @Output() frequencyChange = new EventEmitter<number>();
 
   private baseFrequency = 440;
   private mouseDown = false;
@@ -32,6 +32,10 @@ export class SliderBoardComponent {
   @HostListener('mouseup')
   onMouseup() {
     this.mouseDown = false;
+  }
+
+  stop() {
+    this.frequencyChange.emit(0);
   }
 
 }
