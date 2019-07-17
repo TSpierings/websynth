@@ -35,7 +35,7 @@ export class OscillatorComponent implements OnInit {
     } else {
       this.gainNode.gain.value = 1;
     }
-    
+
     this.oscillatorNode.frequency.value = value * 10;
   }
 

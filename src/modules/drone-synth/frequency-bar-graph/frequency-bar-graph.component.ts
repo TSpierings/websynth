@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
-  selector: 'app-waveform-analyser',
-  templateUrl: './waveform-analyser.component.html',
-  styleUrls: ['./waveform-analyser.component.scss']
+  selector: 'app-frequency-bar-graph',
+  templateUrl: './frequency-bar-graph.component.html',
+  styleUrls: ['./frequency-bar-graph.component.scss']
 })
-export class WaveformAnalyserComponent implements OnInit {
+export class FrequencyBarGraphComponent implements OnInit {
 
   @Input() audioContext: AudioContext;
   @Input() source: AudioNode;
@@ -36,7 +36,7 @@ export class WaveformAnalyserComponent implements OnInit {
   draw() {
     requestAnimationFrame(this.draw.bind(this));
 
-    this.analyserNode.getByteTimeDomainData(this.dataArray);
+    this.analyserNode.getByteFrequencyData(this.dataArray);
     const canvasHeight = this.canvas.nativeElement.height;
     const canvasWidth = this.canvas.nativeElement.width;
 
@@ -46,24 +46,17 @@ export class WaveformAnalyserComponent implements OnInit {
     this.canvasContext.strokeStyle = 'rgb(0, 0, 0)';
     this.canvasContext.beginPath();
 
-    const sliceWidth = canvasWidth * ( 1.0 / this.bufferLength);
+    const barWidth = (canvasWidth / this.bufferLength) * 2.5;
     let x = 0;
 
     for (let i = 0; i < this.bufferLength; i++) {
-      const v = this.dataArray[i] / 128.0;
-      const y = v * this.canvas.nativeElement.height / 2;
+      const barHeight = this.dataArray[i];
 
-      if (i === 0) {
-        this.canvasContext.moveTo(x, y);
-      } else {
-        this.canvasContext.lineTo(x, y);
-      }
+      this.canvasContext.fillStyle = `rgb(${barHeight + 100}, 50, 50)`;
+      this.canvasContext.fillRect(x, canvasHeight - barHeight / 2, barWidth, barHeight);
 
-      x += sliceWidth;
+      x += barWidth + 1;
     }
-
-    this.canvasContext.lineTo(canvasWidth, canvasHeight / 2);
-    this.canvasContext.stroke();
   }
 
 }
