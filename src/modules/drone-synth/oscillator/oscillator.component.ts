@@ -13,21 +13,29 @@ export class OscillatorComponent implements OnInit {
   @Input() audioContext: AudioContext;
 
   private oscillatorNode: OscillatorNode;
+  private gainNode: GainNode;
 
   constructor() { }
 
   ngOnInit() {
+    this.gainNode = this.audioContext.createGain();
+    this.gainNode.gain.value = 1.0;
+    this.gainNode.connect(this.destination);
+
     this.oscillatorNode = this.audioContext.createOscillator();
     this.oscillatorNode.frequency.value = 0;
     this.oscillatorNode.type = 'sine';
     this.oscillatorNode.start();
-
-    if (!isNullOrUndefined(this.destination)) {
-      this.oscillatorNode.connect(this.destination);
-    }
+    this.oscillatorNode.connect(this.gainNode);
   }
 
   setFrequency(value: number) {
+    if (value === 0) {
+      this.gainNode.gain.value = 0;
+    } else {
+      this.gainNode.gain.value = 1;
+    }
+    
     this.oscillatorNode.frequency.value = value * 10;
   }
 

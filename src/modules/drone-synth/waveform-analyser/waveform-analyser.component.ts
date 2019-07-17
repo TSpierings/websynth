@@ -39,7 +39,7 @@ export class WaveformAnalyserComponent implements OnInit {
     const canvasHeight = this.canvas.nativeElement.height;
     const canvasWidth = this.canvas.nativeElement.width;
 
-    this.canvasContext.fillStyle = 'rgb(200, 200, 200)';
+    this.canvasContext.fillStyle = 'rgb(255, 255, 255)';
     this.canvasContext.fillRect(0, 0, canvasWidth, canvasHeight);
     this.canvasContext.lineWidth = 2;
     this.canvasContext.strokeStyle = 'rgb(0, 0, 0)';
