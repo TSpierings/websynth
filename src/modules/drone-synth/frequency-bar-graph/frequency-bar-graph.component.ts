@@ -22,7 +22,7 @@ export class FrequencyBarGraphComponent implements OnInit {
 
   ngOnInit() {
     this.analyserNode = this.audioContext.createAnalyser();
-    this.analyserNode.fftSize = 1024;
+    this.analyserNode.fftSize = 2048;
 
     this.source.connect(this.analyserNode);
 
@@ -58,7 +58,7 @@ export class FrequencyBarGraphComponent implements OnInit {
       this.canvasContext.fillStyle = gradient;
       this.canvasContext.fillRect(x, 0, barWidth, barHeight);
 
-      x += barWidth + 1;
+      x += barWidth;
     }
   }
 
