@@ -9,7 +9,8 @@ export class KnobComponent {
 
   @Output() valueChanged = new EventEmitter<number>();
 
-  private knobValue = 0;
+  public knobValue = 0;
+
   private dragCoordinates: {
     original: number;
     screenX: number;
