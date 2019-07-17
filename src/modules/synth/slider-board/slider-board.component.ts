@@ -16,16 +16,16 @@ export class SliderBoardComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    if (navigator.requestMIDIAccess) {
-      navigator.requestMIDIAccess()
-        .then((midiAccess) => {
-          midiAccess.inputs.forEach((value, key) => {
-            console.log(`MIDI device: ${value.name}`);
-            value.onmidimessage = this.onMidiMessage;
-          });
-        })
-        .catch((error) => console.log(error));
-    }
+    // if (navigator.requestMIDIAccess) {
+    //   navigator.requestMIDIAccess()
+    //     .then((midiAccess) => {
+    //       midiAccess.inputs.forEach((value, key) => {
+    //         console.log(`MIDI device: ${value.name}`);
+    //         value.onmidimessage = this.onMidiMessage;
+    //       });
+    //     })
+    //     .catch((error) => console.log(error));
+    // }
   }
 
   swipe(event: MouseEvent) {
@@ -53,24 +53,24 @@ export class SliderBoardComponent implements OnInit {
     this.frequencyChange.emit(0);
   }
 
-  onMidiMessage = (midiEvent: WebMidi.MIDIMessageEvent) => {
-    const data = midiEvent.data;
-    if (data.length === 3) {
-      const status = data[0];
-      const command = status >>> 4;
+  // onMidiMessage = (midiEvent: WebMidi.MIDIMessageEvent) => {
+  //   const data = midiEvent.data;
+  //   if (data.length === 3) {
+  //     const status = data[0];
+  //     const command = status >>> 4;
 
-      if (command === 0x9) {
-        const note = data[1];
-        const velocity = data[2];
+  //     if (command === 0x9) {
+  //       const note = data[1];
+  //       const velocity = data[2];
 
-        const frequency = 440 * Math.pow(2, (note - 69) / 12);
-        this.frequencyChange.emit(frequency);
-      }
+  //       const frequency = 440 * Math.pow(2, (note - 69) / 12);
+  //       this.frequencyChange.emit(frequency);
+  //     }
 
-      if (command === 0x8) {
-        this.frequencyChange.emit(0);
-      }
-    }
-  }
+  //     if (command === 0x8) {
+  //       this.frequencyChange.emit(0);
+  //     }
+  //   }
+  // }
 
 }
