@@ -38,15 +38,16 @@ export class SpectrumAnalyserComponent implements OnInit {
     requestAnimationFrame(this.draw.bind(this));
 
     this.analyserNode.getByteTimeDomainData(this.dataArray);
+    const canvasHeight = this.canvas.nativeElement.height;
+    const canvasWidth = this.canvas.nativeElement.width;
 
     this.canvasContext.fillStyle = 'rgb(200, 200, 200)';
-    this.canvasContext.fillRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
+    this.canvasContext.fillRect(0, 0, canvasWidth, canvasHeight);
     this.canvasContext.lineWidth = 2;
     this.canvasContext.strokeStyle = 'rgb(0, 0, 0)';
     this.canvasContext.beginPath();
-    this.canvasContext.lineTo(this.canvas.nativeElement.width, this.canvas.nativeElement.height / 2);
 
-    const sliceWidth = this.canvas.nativeElement.width * ( 1.0 / this.bufferLength);
+    const sliceWidth = canvasWidth * ( 1.0 / this.bufferLength);
     let x = 0;
 
     for (let i = 0; i < this.bufferLength; i++) {
@@ -62,7 +63,7 @@ export class SpectrumAnalyserComponent implements OnInit {
       x += sliceWidth;
     }
 
-    this.canvasContext.lineTo(this.canvas.nativeElement.width, this.canvas.nativeElement.height / 2);
+    this.canvasContext.lineTo(canvasWidth, canvasHeight / 2);
     this.canvasContext.stroke();
   }
 
