@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
-  selector: 'app-spectrum-analyser',
-  templateUrl: './spectrum-analyser.component.html',
-  styleUrls: ['./spectrum-analyser.component.scss']
+  selector: 'app-waveform-analyser',
+  templateUrl: './waveform-analyser.component.html',
+  styleUrls: ['./waveform-analyser.component.scss']
 })
-export class SpectrumAnalyserComponent implements OnInit {
+export class WaveformAnalyserComponent implements OnInit {
 
   @Input() audioContext: AudioContext;
   @Input() destination: AudioNode;

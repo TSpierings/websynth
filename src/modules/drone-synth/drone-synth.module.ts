@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FrontPanelComponent } from './front-panel/front-panel.component';
 import { OscillatorComponent } from './oscillator/oscillator.component';
 import { SharedModule } from '../shared/shared.module';
-import { SpectrumAnalyserComponent } from './spectrum-analyser/spectrum-analyser.component';
+import { WaveformAnalyserComponent } from './waveform-analyser/waveform-analyser.component';
 
 @NgModule({
-  declarations: [FrontPanelComponent, OscillatorComponent, SpectrumAnalyserComponent],
+  declarations: [FrontPanelComponent, OscillatorComponent, WaveformAnalyserComponent],
   imports: [
     CommonModule,
     SharedModule
