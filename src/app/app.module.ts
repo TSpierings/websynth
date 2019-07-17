@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { SynthModule } from 'src/modules/synth/synth.module';
 
 import { AppComponent } from './app.component';
+import { DroneSynthModule } from 'src/modules/drone-synth/drone-synth.module';
 
 @NgModule({
   declarations: [
@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    SynthModule
+    DroneSynthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
