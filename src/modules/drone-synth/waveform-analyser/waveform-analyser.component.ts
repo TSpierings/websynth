@@ -17,7 +17,6 @@ export class WaveformAnalyserComponent implements OnInit {
   private canvasContext: CanvasRenderingContext2D;
   private dataArray: Uint8Array;
   private bufferLength: number;
-  private backgroundColorValue = 255;
 
   constructor() { }
 
@@ -40,10 +39,10 @@ export class WaveformAnalyserComponent implements OnInit {
     const canvasHeight = this.canvas.nativeElement.height;
     const canvasWidth = this.canvas.nativeElement.width;
 
-    this.canvasContext.fillStyle = `rgb(${this.backgroundColorValue}, ${this.backgroundColorValue}, ${this.backgroundColorValue})`;
+    this.canvasContext.fillStyle = 'rgb(17, 17, 17)';
     this.canvasContext.fillRect(0, 0, canvasWidth, canvasHeight);
     this.canvasContext.lineWidth = 2;
-    this.canvasContext.strokeStyle = 'rgb(0, 0, 0)';
+    this.canvasContext.strokeStyle = 'rgb(242, 242, 242)';
     this.canvasContext.beginPath();
 
     const sliceWidth = canvasWidth * ( 1.0 / this.bufferLength);

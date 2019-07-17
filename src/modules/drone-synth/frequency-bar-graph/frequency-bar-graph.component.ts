@@ -17,13 +17,12 @@ export class FrequencyBarGraphComponent implements OnInit {
   private canvasContext: CanvasRenderingContext2D;
   private dataArray: Uint8Array;
   private bufferLength: number;
-  private backgroundColorValue = 255;
 
   constructor() { }
 
   ngOnInit() {
     this.analyserNode = this.audioContext.createAnalyser();
-    this.analyserNode.fftSize = 2048;
+    this.analyserNode.fftSize = 1024;
 
     this.source.connect(this.analyserNode);
 
@@ -40,11 +39,15 @@ export class FrequencyBarGraphComponent implements OnInit {
     const canvasHeight = this.canvas.nativeElement.height;
     const canvasWidth = this.canvas.nativeElement.width;
 
-    this.canvasContext.fillStyle = `rgb(${this.backgroundColorValue}, ${this.backgroundColorValue}, ${this.backgroundColorValue})`;
+    this.canvasContext.fillStyle = 'rgb(242, 242, 242)';
     this.canvasContext.fillRect(0, 0, canvasWidth, canvasHeight);
     this.canvasContext.lineWidth = 2;
     this.canvasContext.strokeStyle = 'rgb(0, 0, 0)';
     this.canvasContext.beginPath();
+
+    const gradient = this.canvasContext.createLinearGradient(0, 0, 0, 300);
+    gradient.addColorStop(0, 'rgb(17, 17, 17)');
+    gradient.addColorStop(1, 'rgb(238, 68, 238)');
 
     const barWidth = (canvasWidth / this.bufferLength) * 2.5;
     let x = 0;
@@ -52,8 +55,8 @@ export class FrequencyBarGraphComponent implements OnInit {
     for (let i = 0; i < this.bufferLength; i++) {
       const barHeight = this.dataArray[i];
 
-      this.canvasContext.fillStyle = `rgb(${barHeight + 100}, 50, 50)`;
-      this.canvasContext.fillRect(x, canvasHeight - barHeight / 2, barWidth, barHeight);
+      this.canvasContext.fillStyle = gradient;
+      this.canvasContext.fillRect(x, 0, barWidth, barHeight);
 
       x += barWidth + 1;
     }
