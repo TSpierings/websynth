@@ -7,7 +7,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class KnobComponent implements OnInit {
 
-  @Output() value = new EventEmitter<number>();
+  @Output() valueChanged = new EventEmitter<number>();
 
   private knobValue = 0;
   private dragCoordinates: {
@@ -37,7 +37,7 @@ export class KnobComponent implements OnInit {
       this.knobValue = Math.min(this.knobValue, 100);
       this.knobValue = Math.max(this.knobValue, 0);
 
-      this.value.emit(this.knobValue);
+      this.valueChanged.emit(this.knobValue);
     }
   }
 

@@ -1,4 +1,5 @@
 <div class="oscillator">
   <span>Osc {{number}}</span>
-  <app-knob></app-knob>
+  <app-knob 
+    (valueChanged)="setFrequency($event)"></app-knob>
 </div>
