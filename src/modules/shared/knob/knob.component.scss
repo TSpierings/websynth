@@ -1,3 +1,5 @@
+@import 'colors.scss';
+
 .knob-box {
     position: relative;
 
@@ -7,21 +9,22 @@
         height: 50px;
         width: 50px;
         border-radius: 25px;
-        background-color: #999;
-        border: 1px solid #333;
+        background-color: $light-color;
         margin: 5px;
+        border: 1px solid $dark-color;
     
         .indicator {
             margin-top: 2px;
-            height: 10px;
-            width: 10px;
-            border-radius: 10px;
-            background-color: #fff;
-            border: 1px solid #333;
+            height: 8px;
+            width: 8px;
+            border-radius: 8px;
+            background-color: $dark-color;
         }
     }    
 
     span {
+        font-weight: bold;
+        color: $dark-color;
         position: absolute;
         width: 100%;
         top: 18px;

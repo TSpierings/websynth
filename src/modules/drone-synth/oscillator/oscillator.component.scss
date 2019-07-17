@@ -1,8 +1,11 @@
+@import 'colors.scss';
+
 .oscillator {
     display: flex;
     flex-direction: column;
-    background-color: #aaa;
-    border: 1px solid #333;
+    background-color: $light-color;
+    color: $dark-color;
     align-items: center;
     user-select: none;
+    border-radius: 3p3
 }
