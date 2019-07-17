@@ -27,6 +27,7 @@ export class FrontPanelComponent implements OnInit {
   private initGain() {
     this.gainNode = this.audioContext.createGain();
     this.gainNode.gain.value = 0.5;
+    this.gainNode.connect(this.audioContext.destination);
   }
 
 }

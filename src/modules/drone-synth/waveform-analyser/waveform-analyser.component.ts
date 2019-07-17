@@ -8,7 +8,6 @@ import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 export class WaveformAnalyserComponent implements OnInit {
 
   @Input() audioContext: AudioContext;
-  @Input() destination: AudioNode;
   @Input() source: AudioNode;
 
   @ViewChild('canvas')
@@ -26,7 +25,6 @@ export class WaveformAnalyserComponent implements OnInit {
     this.analyserNode.fftSize = 2048;
 
     this.source.connect(this.analyserNode);
-    this.analyserNode.connect(this.destination);
 
     this.bufferLength = this.analyserNode.frequencyBinCount;
     this.dataArray = new Uint8Array(this.bufferLength);
