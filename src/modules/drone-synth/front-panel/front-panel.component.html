@@ -7,3 +7,8 @@
     </app-oscillator>
   </div>
 </div>
+<app-spectrum-analyser
+  [audioContext]="audioContext"
+  [source]="gainNode"
+  [destination]="audioContext.destination">
+</app-spectrum-analyser>
