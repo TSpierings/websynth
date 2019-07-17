@@ -1,6 +1,30 @@
+@import 'colors.scss';
+
+.header {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: $dark-color;
+    border-bottom: 1px solid $light-color;
+    color: $light-color;    
+
+    span {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    a {
+        font-size: 12px;
+
+        &:visited {
+            color: $light-color;
+        }
+    }
+}
+
 .oscillator-bank {
     display: flex;
-    background-color: #ddd;
+    background-color: $dark-color;
 
     .oscillator {
         margin: 5px;
