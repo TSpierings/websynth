@@ -1,6 +1,10 @@
-<div class="knob"
+<div class="knob-box"
   (mousedown)="mouseDown($event)"
   (window:mousemove)="mouseMove($event)"
   (window:mouseup)="mouseUp($event)">
-  {{knobValue}}
+  <div class="knob"    
+    [style.transform]="'rotate(' + (-135 + knobValue * 2.7) + 'deg)'">
+    <div class="indicator"></div>
+  </div>  
+  <span>{{knobValue}}</span>
 </div>
