@@ -25,6 +25,8 @@
 .oscillator-bank {
     display: flex;
     background-color: $dark-color;
+    justify-content: space-around;
+    flex-wrap: wrap;
 
     .oscillator {
         margin: 5px;

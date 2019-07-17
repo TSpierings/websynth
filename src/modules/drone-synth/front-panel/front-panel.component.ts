@@ -19,7 +19,7 @@ export class FrontPanelComponent implements OnInit {
 
     this.oscillatorBank = [];
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 12; i++) {
       this.oscillatorBank.push(i);
     }
   }
