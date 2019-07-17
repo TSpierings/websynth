@@ -12,6 +12,8 @@ export class OscillatorComponent implements OnInit {
   @Input() destination: AudioNode;
   @Input() audioContext: AudioContext;
 
+  public selectedWave = <OscillatorType>'sine';
+
   private oscillatorNode: OscillatorNode;
   private gainNode: GainNode;
 
@@ -24,7 +26,7 @@ export class OscillatorComponent implements OnInit {
 
     this.oscillatorNode = this.audioContext.createOscillator();
     this.oscillatorNode.frequency.value = 0;
-    this.oscillatorNode.type = 'sine';
+    this.oscillatorNode.type = this.selectedWave;
     this.oscillatorNode.start();
     this.oscillatorNode.connect(this.gainNode);
   }
@@ -37,6 +39,11 @@ export class OscillatorComponent implements OnInit {
     }
 
     this.oscillatorNode.frequency.value = value * 10;
+  }
+
+  selectOscillatorWave(type: OscillatorType) {
+    this.selectedWave = type;
+    this.oscillatorNode.type = this.selectedWave;
   }
 
 }

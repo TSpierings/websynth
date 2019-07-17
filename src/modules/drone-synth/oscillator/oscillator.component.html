@@ -1,5 +1,18 @@
 <div class="oscillator">
-  <span>Osc {{number}}</span>
-  <app-knob 
-    (valueChanged)="setFrequency($event)"></app-knob>
+  <div class="left">
+    <span>Osc {{number}}</span>
+    <app-knob 
+      (valueChanged)="setFrequency($event)">
+    </app-knob>
+  </div>
+  <div class="right">
+    <span [class.selected]="selectedWave == 'sine'"
+      (click)="selectOscillatorWave('sine')">Sin</span>
+    <span [class.selected]="selectedWave == 'square'"
+      (click)="selectOscillatorWave('square')">Sqw</span>
+    <span [class.selected]="selectedWave == 'triangle'"
+      (click)="selectOscillatorWave('triangle')">Tri</span>
+    <span [class.selected]="selectedWave == 'sawtooth'"
+      (click)="selectOscillatorWave('sawtooth')">Saw</span>
+  </div>  
 </div>
